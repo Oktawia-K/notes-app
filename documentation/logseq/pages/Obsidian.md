@@ -1,0 +1,13 @@
+# Plusy
+	- duże wsparcie społeczności
+		- dużo opcji dostosowania interfejsu
+		- łatwy dostęp do motywów
+		- dużo rozszerzeń funkcjonalnych (excelidraw, dataview etc.)
+	- podział na fizyczne pliki z łatwym dostępem i edycją nawet bez aplikacji
+	- synchronizajca wszystkich rozszerzeń i ustawień poprzez pliki
+	- bardzo intuicyjny, konfiguracja jest opcjonalna
+	-
+- # Minusy
+	- ograniczone oficjalne rozszerzenia funkcjonalności
+		- użytkownik polega na pracy wolontariuszy
+	-

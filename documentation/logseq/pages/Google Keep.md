@@ -1,0 +1,12 @@
+# Plusy
+	- darmowa, automatyczna synchronizacja
+	- wsparcie dużej firmy
+	- dostępne domyślnie na telefonach z Androidem
+	- łatwe tworzenie nowych notatek
+	- widgety
+- # Minusy
+	- polega na autorskich formatach
+	- brak opcji eksportu
+	- ograniczone foromatowanie tekstu
+	- ograniczone motywy
+	- brak integracji pomiędzy notatkami

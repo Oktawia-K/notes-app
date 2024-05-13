@@ -1,0 +1,17 @@
+# funkcjonalne
+- tworzenie nowej notatki
+- tworzenie listy zadań
+	- ustawienie listy powtarzającej się
+	- lista przydzielona do dnia lub bezczasowa
+	- lista z deadlinem
+- widok kalendarza
+	- aktualny do roku
+	- zrozumiały podział na miesiące
+	- zawiera odniesienia do list zadań
+- widok listy notatek
+	- data stworzenia / dzień przypisany
+- # niefunkcjonalne
+- dane przechowywane w bazie danych
+	- postgres?
+	- mongodb?
+- aplikacja "natywna" albo GitHub Pages
