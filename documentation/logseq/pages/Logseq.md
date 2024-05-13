@@ -7,4 +7,4 @@
 	- brak drzewa folderów i plików
 	- słaby/subtelny feedback dla użytkownika
 	- motywy zaimplementowane są niestabilnie
-	-
+	- brak implementacji listy zadań

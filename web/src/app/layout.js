@@ -1,5 +1,5 @@
 import { Chakra_Petch } from "next/font/google";
-// import "./globals.css";
+import "./globals.sass";
 
 const chakra = Chakra_Petch({ subsets: ["latin"], weight: ["300", "500"] });
 
