@@ -1,10 +1,15 @@
 import styles from "./page.module.sass";
+import Bar from "../components/bar";
+import Textarea from "../components/textarea";
 
 export default function Home() {
     return (
         <div className={styles.main}>
-            <h1>Welcome to my app!</h1>
-            <p className={styles.text}>Hope you stay a while :)</p>
+            <Bar />
+            <div className={styles.notes}>
+                <Textarea />
+            </div>
+
         </div>
     )
 }

@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "material-symbols": "^0.21.2",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-markdown": "^9.0.1"
   },
   "devDependencies": {
     "eslint": "^8",
