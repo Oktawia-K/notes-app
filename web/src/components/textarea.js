@@ -1,17 +1,45 @@
+"use client"
 import styles from "./textarea.module.sass";
-import Markdown from 'react-markdown'
+import Markdown from 'react-markdown';
+import { useState } from 'react';
 
-export default function Textarea() {
+export default function Textarea({ initialText }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [text, setText] = useState(initialText);
+    const [rowCount, setRowCount] = useState(1);
+
+    const handleDoubleClick = () => {
+        setIsEditing(true);
+    }
+    const handleChange = (event) => {
+        setText(event.target.value);
+        setRowCount(text.split('  ').length);
+    }
+    const handleBlur = () => {
+        //setText(text.replace("\n", "  \n"));
+        setIsEditing(false);
+    };
+
+    /*
+    const handleEnter = (e) => {
+        if (e.keyCode == 13)
+            handleBlur();
+    }
+    window.addEventListener("keydown", handleEnter);
+    */
+
     return (
         <div className={styles.textarea}>
-            <div>
+            <div className="titleBar">
                 <h1>Name of the note</h1>
                 <span className="material-symbols-outlined">
                     close
                 </span>
             </div>
+            <section onDoubleClick={handleDoubleClick}>
+                {isEditing ? (<textarea rows={rowCount} value={text} onChange={handleChange} onBlur={handleBlur} />) : (<Markdown>{text}</Markdown>)}
+            </section>
 
-            <Markdown>Text would normally go here, but there is none at the moment. This is a *test*. **Please** work, I _beg_ of you.</Markdown>
         </div>
     )
 }

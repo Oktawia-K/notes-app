@@ -7,7 +7,7 @@ export default function Home() {
         <div className={styles.main}>
             <Bar />
             <div className={styles.notes}>
-                <Textarea />
+                <Textarea initialText={"This is *sample* text for the **Markdown** field."} />
             </div>
 
         </div>
