@@ -5,8 +5,13 @@ import { useState } from 'react';
 
 export default function Textarea({ initialText }) {
     const [isEditing, setIsEditing] = useState(false);
+    const [name, setName] = useState("name of the note");
     const [text, setText] = useState(initialText);
     const [rowCount, setRowCount] = useState(1);
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    }
 
     const handleDoubleClick = () => {
         setIsEditing(true);
@@ -31,7 +36,7 @@ export default function Textarea({ initialText }) {
     return (
         <div className={styles.textarea}>
             <div className="titleBar">
-                <h1>Name of the note</h1>
+                <input type="text" value={name} onChange={handleNameChange}></input>
                 <span className="material-symbols-outlined">
                     close
                 </span>
