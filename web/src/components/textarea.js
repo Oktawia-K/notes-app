@@ -2,12 +2,13 @@
 import styles from "./textarea.module.sass";
 import Markdown from 'react-markdown';
 import { useState } from 'react';
+import { updateNote } from '@/actions/action';
 
-export default function Textarea({ initialText }) {
+export default function Textarea({ initialText, noteID }) {
     const [isEditing, setIsEditing] = useState(false);
-    const [name, setName] = useState("name of the note");
-    const [text, setText] = useState(initialText);
-    const [rowCount, setRowCount] = useState(1);
+    const [name, setName] = useState(initialText[0]);
+    const [text, setText] = useState(initialText[1]);
+    const [rowCount, setRowCount] = useState(text.split('  ').length);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -25,6 +26,9 @@ export default function Textarea({ initialText }) {
         setIsEditing(false);
     };
 
+    const handleSave = () => {
+        updateNote(noteID, name, text);
+    }
     /*
     const handleEnter = (e) => {
         if (e.keyCode == 13)
@@ -37,6 +41,9 @@ export default function Textarea({ initialText }) {
         <div className={styles.textarea}>
             <div className="titleBar">
                 <input type="text" value={name} onChange={handleNameChange}></input>
+                <span className="material-symbols-rounded" onClick={handleSave}>
+                    save
+                </span>
                 <span className="material-symbols-outlined">
                     close
                 </span>
