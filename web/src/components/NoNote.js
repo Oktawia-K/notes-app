@@ -1,3 +1,5 @@
+import styles from "./nonote.module.sass";
+
 export default function NoNote() {
     return (
         <div className={styles.nonote}>

@@ -12,3 +12,35 @@ div.notes
     flex-direction: row
     align-items: flex-start
     justify-content: center
+
+div.bar
+    z-index: 2
+    position: absolute
+    left: 12px
+    top: 50vh
+    transform: translate(0px, -50%)
+    padding: 40px 20px
+    background-color: $primary
+    display: flex
+    flex-direction: column
+    gap: 32px
+    align-items: center
+    justify-content: space-between
+    border-radius: 32px
+    span
+        color: $background
+
+div.modal
+    z-index: 1
+    position: absolute
+    left: 12px
+    top: 50vh
+    transform: translate(0px, -50%)
+    padding: 40px 20px 40px 80px
+    background: linear-gradient(#0001 0%, #0001 100%), $primary
+    display: flex
+    flex-direction: column
+    gap: 16px
+    align-items: center
+    justify-content: space-between
+    border-radius: 32px

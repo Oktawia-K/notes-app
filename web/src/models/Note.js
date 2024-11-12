@@ -15,4 +15,4 @@ const postSchema = new mongoose.Schema({
     },
 })
 
-export default mongoose.models.Post || mongoose.model('Note', postSchema)
+export default mongoose.models.Note || mongoose.model('Note', postSchema)

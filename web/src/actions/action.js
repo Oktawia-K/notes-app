@@ -1,11 +1,14 @@
 'use server'
 
 import Note from '@/models/Note';
-import { ObjectId } from 'mongodb';
 
 
 const getNote = async (id) => {
-    return Note.findOne({ _id: id })
+    return Note.find({ _id: id });
+}
+
+const getNotesList = async () => {
+    return Note.find({ owner: "octavia" })
 }
 
 const updateNote = async (id, title, text) => {
@@ -15,4 +18,4 @@ const updateNote = async (id, title, text) => {
     await note.save();
 }
 
-export { getNote, updateNote }
+export { getNote, updateNote, getNotesList }
