@@ -3,21 +3,21 @@ import { useState, useEffect } from 'react';
 import styles from "./page.module.sass";
 import Textarea from "../components/textarea";
 import NoNote from "@/components/NoNote";
-import { getNote, getNotesList } from '@/actions/action';
+import { getNote, getNotesList, createNewNote, deleteNote } from '@/actions/action';
 
 export default function Home() {
-    const [activeNote, setActiveNote] = useState("");
+    const [activeNote, setActiveNote] = useState(null);
     const [notes, setNotes] = useState([]);
     const [visible, setVisible] = useState(false);
+    const [newDialogue, setNewDialogue] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     const handleList = () => {
+        setNewDialogue(false);
+        setConfirmDelete(false);
         setVisible(!visible);
     }
-    /*
-    const note = await getNote("671f6b99df48fcc376272949");
-    console.log(note);
-    console.log(JSON.stringify(note._id).split('\"')[1]);
-    */
+
     async function setNote(id) {
         if (id === null) {
             setActiveNote(null);
@@ -37,18 +37,38 @@ export default function Home() {
 
     }, [])
 
-    const handleChangeNote = (id) => {
-        setNote(JSON.stringify(id).split('\"')[1]);
+    const openDialogue = () => {
+        setNote(null);
+        setNewDialogue(true);
+    }
+
+    const handleNewNote = () => {
+        setTimeout(() => {
+            helperSetNotes();
+            setNewDialogue(false);
+        }, 500);
+    }
+
+    const handleConfirmDelete = () => {
+        setNewDialogue(false);
+        setVisible(false);
+        setConfirmDelete(!confirmDelete);
+    }
+
+    const handleDelete = async () => {
+        await deleteNote(JSON.stringify(activeNote._id).split('\"')[1]);
+        setActiveNote(null);
+        helperSetNotes();
     }
 
     return (
         <div className={styles.main}>
             <div className={styles.bar}>
-                <span className="material-symbols-rounded">
+                <span className="material-symbols-rounded" onClick={openDialogue}>
                     add
                 </span>
-                <span className="material-symbols-rounded">
-                    draft
+                <span className="material-symbols-rounded" onClick={handleConfirmDelete}>
+                    delete
                 </span>
                 <span className="material-symbols-rounded" onClick={handleList}>
                     folder
@@ -57,15 +77,19 @@ export default function Home() {
                     help
                 </span>
             </div>
-            <div className={styles.modal}>
+            <div className={visible || confirmDelete ? styles.modal : styles.modalhidden}>
                 {visible ? notes.map(note => (
                     <div key={note._id}>
-                        <p onClick={() => { setNote(null); setNote(JSON.stringify(note._id).split('\"')[1]) }}>{note.title}</p>
+                        <p className={visible || confirmDelete ? styles.textlist : styles.texthidden} onClick={() => { setNote(null); setNote(JSON.stringify(note._id).split('\"')[1]) }}>{note.title}</p>
                     </div>
                 )) : ""}
+                {confirmDelete && activeNote === null ? <p>Nie wybrano notatki</p> : ""}
+                {confirmDelete && activeNote ? <div className={styles.buttonContainer}><button className={styles.button} onClick={() => setConfirmDelete(false)}>Anuluj</button><button className={styles.buttonImportant} onClick={handleDelete}>Usuń</button></div> : ""}
             </div>
             <div className={styles.notes}>
-                {activeNote ? <Textarea initialText={[activeNote.title, activeNote.text]} noteID={JSON.stringify(activeNote._id).split('\"')[1]} /> : <NoNote />}
+                {newDialogue ? <form action={createNewNote}><input type="text" name="title" placeholder="Tytuł nowej notatki"></input><button type="submit" onClick={handleNewNote}>Nowa notatka</button></form> : " "}
+                {activeNote ? <Textarea initialText={[activeNote.title, activeNote.text]} noteID={JSON.stringify(activeNote._id).split('\"')[1]} /> : " "}
+                {newDialogue == false && activeNote == null ? <NoNote /> : " "}
                 {/*<NoNote />*/}
             </div>
         </div>
