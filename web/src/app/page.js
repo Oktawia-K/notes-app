@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+import Link from 'next/link'
 import styles from "./page.module.sass";
 import Textarea from "../components/textarea";
 import NoNote from "@/components/NoNote";
@@ -73,9 +74,12 @@ export default function Home() {
                 <span className="material-symbols-rounded" onClick={handleList}>
                     folder
                 </span>
-                <span className="material-symbols-rounded">
-                    help
-                </span>
+                <Link href="/tasks">
+                    <span className="material-symbols-rounded">
+                        list
+                    </span>
+                </Link>
+
             </div>
             <div className={visible || confirmDelete ? styles.modal : styles.modalhidden}>
                 {visible ? notes.map(note => (
