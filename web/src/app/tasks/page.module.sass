@@ -1,5 +1,94 @@
+@import @/variables.sass
+
+div.main
+    width: 100vw
+    height: 100vh
+    background: $background
+
+div.sidebar
+    z-index: 2
+    position: absolute
+    left: 12px
+    top: 50vh
+    transform: translate(0px, -50%)
+    padding: 40px 20px
+    background-color: $primary
+    display: flex
+    flex-direction: column
+    gap: 32px
+    align-items: flex-start
+    justify-content: space-between
+    border-radius: 32px
+    span
+        color: $background
+    a, a:visited
+        text-decoration: none
+
+div.container
+    display: flex
+    flex-direction: column
+    align-items: center
+    p
+        font-size: 18px
+
+span.notes
+    font-size: 32px
+    font-weight: bold
+
+div.tabSwitch
+    margin-bottom: 3em
+    button
+        background: $primary
+        border: none
+        width: 192px
+        height: 64px
+        font-family: inherit
+        font-size: 18px
+    button:disabled
+        background: $accent
+        color: $background
+
+p.day
+    padding-bottom: 0.5em
+    margin-bottom: 0.5em
+    border-bottom: 4px solid $secondary
+
+div.item
+    display: flex
+    margin-bottom: 0.5em
+
+div.input
+    margin: 0.5em 0
+    height: 32px
+    width: 192px + 192px
+    display: flex
+    align-items: center
+    border-bottom: 4px solid $secondary
+    input
+        border: none
+        background: none
+        font-family: inherit
+        font-size: 18px
+        height: 100%
+        width: 100%
+    span
+        color: $accent
+        padding: 4px
+        border-radius: 32px
+
 p.completed
     text-decoration: line-through
+    color: $accent
 
 p.pending
     text-decoration: none
+
+div.repeating
+    display: flex
+    gap: 0.5em
+    button
+        font-family: inherit
+        border: none
+        background: $secondary
+        padding: 4px 8px
+        border-radius: 16px
