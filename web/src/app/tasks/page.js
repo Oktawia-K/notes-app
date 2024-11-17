@@ -16,12 +16,14 @@ import {
 	addTaskWeekly,
 	addTaskMonthly,
 	addTaskYearly,
+	getMonthlyTasks,
 } from "@/actions/action";
 
 export default function Tasks() {
 	const [day, setDay] = useState(new Date());
 	const [dailyTasks, setDailyTasks] = useState([]);
 	const [recurringTasks, setRecurringTasks] = useState([]);
+	const [monthlyTasks, setMonthlyTasks] = useState([]);
 	const [tabManage, setTabManage] = useState(false);
 	const [taskText, setTaskText] = useState("");
 
@@ -35,9 +37,13 @@ export default function Tasks() {
 	const helperGetRecurring = async () => {
 		setRecurringTasks(await getRecurringTasks());
 	};
+	const helperGetMonthly = async (date) => {
+		setMonthlyTasks(await getMonthlyTasks(date));
+	};
 	useEffect(() => {
 		helperGetTasks();
 		helperGetRecurring();
+		helperGetMonthly(day);
 	}, [day, tabManage]);
 
 	const handleDoneRecurring = async (id) => {
@@ -66,6 +72,40 @@ export default function Tasks() {
 		helperGetTasks();
 	};
 
+	const helperTileContent = (date) => {
+		const dayBefore = new Date(
+			date.getFullYear(),
+			date.getMonth(),
+			date.getDate()
+		);
+		const dayAfter = new Date(
+			date.getFullYear(),
+			date.getMonth(),
+			date.getDate() + 1
+		);
+		console.log(monthlyTasks.filter((day) => day >= dayBefore));
+		return monthlyTasks.filter(
+			(day) => day.date >= dayBefore && day.date < dayAfter
+		);
+	};
+
+	const tileContent = ({ date, view }) => {
+		// Add class to tiles in month view only
+		if (view === "month") {
+			// Check if a date React-Calendar wants to check is on the list of dates to add class to
+			const tasksInDay = helperTileContent(date);
+			//console.log(tasksInDay);
+			const allTasks = tasksInDay.map((task) =>
+				!task.completed && !task.recurring ? task.text : null
+			);
+			const validTasks = allTasks.filter((task) => task != null);
+			//console.log(validTasks.length);
+			if (validTasks.length > 0) {
+				return " ∘";
+			}
+		}
+	};
+
 	return (
 		<div className={styles.main}>
 			<div className={styles.sidebar}>
@@ -83,6 +123,10 @@ export default function Tasks() {
 					prev2Label={null}
 					onChange={handleCalendar}
 					value={day}
+					tileContent={tileContent}
+					onActiveStartDateChange={({ activeStartDate }) =>
+						helperGetMonthly(activeStartDate)
+					}
 				/>
 			</div>
 			<div className={styles.container}>
