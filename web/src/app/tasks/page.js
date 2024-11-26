@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Markdown from "react-markdown";
 import Calendar from "react-calendar";
 import styles from "./page.module.sass";
 import "@/calendar.css";
@@ -153,7 +154,7 @@ export default function Tasks() {
 				{!tabManage &&
 					dailyTasks.map((task) => (
 						<div key={task._id} className={styles.item}>
-							<p
+							<Markdown
 								className={
 									task.completed
 										? styles.completed
@@ -161,7 +162,7 @@ export default function Tasks() {
 								}
 							>
 								{task.text}
-							</p>
+							</Markdown>
 							<span
 								className="material-symbols-rounded"
 								onClick={
