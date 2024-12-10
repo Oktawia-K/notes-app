@@ -90,13 +90,13 @@
 }
 
 .react-calendar__month-view__days__day--weekend {
-	color: #26c0d8;
+	color: #00182490;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth,
 .react-calendar__decade-view__years__year--neighboringDecade,
 .react-calendar__century-view__decades__decade--neighboringCentury {
-	color: #26c0d8c7;
+	color: #00182490;
 }
 
 .react-calendar__year-view .react-calendar__tile,
