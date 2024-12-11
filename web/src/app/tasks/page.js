@@ -110,7 +110,7 @@ export default function Tasks() {
 	return (
 		<div className={styles.main}>
 			<div className={styles.sidebar}>
-				<Link href="/">
+				<Link href="/notes">
 					<span className={styles.notes}>
 						<span className="material-symbols-rounded">
 							description
