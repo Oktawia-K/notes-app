@@ -192,7 +192,7 @@ export default function Tasks() {
 					</div>
 				)}
 				{!tabManage && <hr />}
-				{!tabManage && <p>Dodaj okresowo (na rok)</p>}
+				{!tabManage && <p>Dodaj okresowo</p>}
 				{!tabManage && (
 					<div className={styles.repeating}>
 						<button
